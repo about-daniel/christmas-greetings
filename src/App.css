@@ -1,6 +1,38 @@
-html,*{font-family: 'Festive', cursive;}
+html,*{font-family: 'Festive', cursive;overscroll-behavior-y: none;}
 .container{
-  width: 100vw;height: 100vh;background: radial-gradient(#e66465, #830808);display: flex;align-items: center;justify-content: center;
+  height: 600vh;width: 100vw;position: relative;overflow: hidden;
 }
-h1{font-size: 130px;line-height: 140px;color: #fff;margin: 0;}
+.wrapper{
+  width: 100vw;height: 100vh;background: radial-gradient(#e66465, #830808);display: flex;align-items: center;justify-content: center;position: fixed;
+  left: 0;top: 0;z-index:0;
+}
+.overlay{
+  width: 150vw;height: 150vw;background: #fff;position: fixed;left: 50%;top: 50%;z-index: 99;
+  transform: translate(-50%,-50%);border-radius: 50%;transform-origin: center;
+}
+h1{font-size: 170px;line-height: 170px;color: #fff;margin: 0;}
 h2{font-size: 60;color: #fff;margin: 0;text-align: center;}
+.greetings{display: none;}
+.decoration{position: absolute;bottom: -31%;left: 50%;transform:translateX(-50%);width: 130vw;height: auto;z-index: 10;}
+.decoration.top{bottom: auto;top:-31%;left: 50%;transform:translateX(-50%) rotate(180deg);width: 130vw;height: auto;z-index: 10;}
+
+.decoration img{width: 100%;height: auto;display: block;}
+.snowman-wrapper{position: absolute;left: 50%;top: 50vh;transform: translate(-50%,-50%);z-index:2;}
+svg.snowman{overflow: visible;}
+svg.snowman path,svg.snowman g{z-index: 1;position: relative;}
+svg.snowman #carrot{z-index: 3;position: relative;}
+.ball-wrapper{position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);z-index: 9;}
+.webgl-wrapper{position: fixed;left: 0;top: 0;width: 100%;height: 100vh;z-index: 100;opacity: 0;transform: scale(0);}
+.end{opacity: 0;transform: scale(0);}
+
+@media screen and (max-width:700px){
+  .decoration.top {top: -10%;width: 170vw;}
+  .decoration.bottom {bottom: -10%;width: 170vw;}
+  .overlay {width: 250vw;height: 250vw;}
+  h1 {font-size: 80px;line-height: 80px;text-align: center;color: #fff;}
+  .ball-wrapper svg{width: 355px;}
+  svg.snowman{width: 150px;}
+  .container{height: 270vh;}
+
+
+}
