@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 import './App.css'
-import Snowman from './components/Snowman.jsx';
+import Christmas from './components/Christmas.jsx';
 import Ball from './components/Ball.jsx';
-import Snow from './components/Snow.jsx';
 import decoration from './assets/decoration.png';
 import { useRef } from "react";
 import gsap from "gsap";
@@ -26,9 +25,7 @@ function App() {
         <div className='overlay' />
         <div className='wrapper'>
           <div className='decoration top'><img src={decoration} /></div>
-          <Snowman className="snowman" container={container}/>
-          <Ball container={container} />
-          <Snow />
+          <Christmas />
           <div className='decoration bottom'><img src={decoration} /></div>
           <div className='end'>
             <h1>Buone feste</h1>
