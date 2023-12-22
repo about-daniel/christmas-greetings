@@ -1,33 +1,41 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 import * as THREE from 'three'
 import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF,OrbitControls } from '@react-three/drei'
 import { useMemo } from "react";
 import { useControls } from 'leva'
+import gsap from "gsap";
 
 
 
 export function Logo() {
+//     const options = useMemo(() => {
+//         return {
+//             x: { value: 0, min: -1000, max: 1000, step: 1 },
+//             y: { value: -185, min: -1000, max: 1000, step: 1 },
+//             z: { value: -227, min: -1000, max: 1000, step: 1 },
+//             rotationX: { value: 1.8, min: -360.0, max: 360.0, step: 0.1 },
+//             rotationY: { value: 0.0, min: -360, max: 360, step: 0.1 },
+//             rotationZ: { value: 0.0, min: -360, max: 360, step: 0.1 },
+//             visible: true,
+//       }
+//   }, [])
+//   const handler = useControls('Logo', options)
   const ref = useRef()
-  const options = useMemo(() => {
-    return {
-      x: { value: 0, min: 0, max: Math.PI * 2, step: 1 },
-      y: { value: 0, min: 0, max: Math.PI * 2, step: 1 },
-      z: { value: 0, min: 0, max: Math.PI * 2, step: 1 },
-      rotationX: { value: 0, min: -360, max: 360, step: 1 },
-      rotationY: { value: 0, min: -360, max: 360, step: 1 },
-      rotationZ: { value: 0, min: -360, max: 360, step: 1 },
-      visible: true,
-    }
-  }, [])
-  const handler = useControls('Logo', options)
 
-
-  const {scene} = useGLTF('/model/logo-375.glb')
-//   useFrame((state, delta) => (ref.current.rotation.x += delta))
-  return <primitive ref={ref} object={scene} position={[handler.x,handler.y,handler.z]} rotation={[handler.rotationX,handler.rotationY,handler.rotationZ]} visible={handler.visible} />
+  const {scene} = useGLTF('/model/logo 375.glb')
+  scene.children.forEach((mesh, i) => {
+    mesh.castShadow = true;
+    mesh.children.forEach((m)=>{
+        m.castShadow = true;
+    })
+  })
+  
+  scene.castShadow = true;  useFrame((state,delta)=>{ref.current.rotation.y += delta})
+  return <primitive ref={ref} object={scene} scale={[2.4,2.4,2.4]} position={[3,0,0]} rotation={[0,0,0]} />
 }
 
 
@@ -71,7 +79,7 @@ export function Snow() {
             
             positionsArray[i] += velX;
             positionsArray[i + 1] += velocities[i+1];
-            positionsArray[i + 2] += velZ;
+            //positionsArray[i + 2] += velZ;
 
             if (positionsArray[i + 1] < -minRange ) {
                 positionsArray[i + 1] = minRange;
@@ -126,4 +134,3 @@ const drawRadialGradation = (ctx, canvasRadius, canvasW, canvasH) => {
     ctx.fillRect(0,0,canvasW,canvasH);
     ctx.restore();
 }
-
