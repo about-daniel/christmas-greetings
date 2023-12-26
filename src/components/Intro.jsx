@@ -1,9 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
-import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { useProgress } from "@react-three/drei";
 import GreetingsTitle from './GreetingsTitle.jsx';
 
