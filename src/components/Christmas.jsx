@@ -23,7 +23,7 @@ export default function Christmas({...props}){
                     intensity={3}
                     position={[12, 18, 17]}
                  />
-                <Environment map={envMap} background />
+                {/* <Environment map={envMap} background /> */}
                 <PerspectiveCamera ref={renderCamera} makeDefault position={[0, 0, 50]} fov={80} rotation={[1, 0, 0]} />
                 <OrbitControls ref={cameraRef} enableDamping={false} enablePan={false} enableZoom={false}  minPolarAngle={-1}  maxPolarAngle={Math.PI / 1.6} target={[1, 0, 0]} />
             </Fisheye>
