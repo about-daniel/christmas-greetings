@@ -17,7 +17,7 @@ export default function GreetingsTitle({...props}){
             distance: path.current.getTotalLength(),
             // Make the animation lasts 5 seconds
             duration: 3,
-            delay:1,
+            delay:1.7,
             // Function call on each frame of the animation
             onUpdate: () => {
               // Query a point at the new distance value
@@ -32,7 +32,7 @@ export default function GreetingsTitle({...props}){
             }
         });
 
-        gsap.from(path.current,{scale:0,y:30,filter:'blur(50px)',duration:1.4,ease:'ease',delay:0.6})
+        gsap.from([path.current,'.follow'],{opacity:0,fill:'#b0b08800',duration:1.4,ease:'ease',delay:1})
 
 
         function createParticle (point) {

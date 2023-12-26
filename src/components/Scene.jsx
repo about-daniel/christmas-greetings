@@ -2,39 +2,18 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 import * as THREE from 'three'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useGLTF,OrbitControls } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { useMemo } from "react";
-import { useControls } from 'leva'
-import gsap from "gsap";
 
 
 
 export function Logo() {
-//     const options = useMemo(() => {
-//         return {
-//             x: { value: 0, min: -1000, max: 1000, step: 1 },
-//             y: { value: -185, min: -1000, max: 1000, step: 1 },
-//             z: { value: -227, min: -1000, max: 1000, step: 1 },
-//             rotationX: { value: 1.8, min: -360.0, max: 360.0, step: 0.1 },
-//             rotationY: { value: 0.0, min: -360, max: 360, step: 0.1 },
-//             rotationZ: { value: 0.0, min: -360, max: 360, step: 0.1 },
-//             visible: true,
-//       }
-//   }, [])
-//   const handler = useControls('Logo', options)
   const ref = useRef()
 
   const {scene} = useGLTF('/model/logo 375.glb')
-  scene.children.forEach((mesh, i) => {
-    mesh.castShadow = true;
-    mesh.children.forEach((m)=>{
-        m.castShadow = true;
-    })
-  })
-  
-  scene.castShadow = true;  useFrame((state,delta)=>{ref.current.rotation.y += delta})
+  useFrame((state,delta)=>{ref.current.rotation.y += delta})
   return <primitive ref={ref} object={scene} scale={[2.4,2.4,2.4]} position={[3,0,0]} rotation={[0,0,0]} />
 }
 
@@ -43,7 +22,7 @@ export function Logo() {
 export function Snow() {
     const ref = useRef()
 
-    const particleNum = 10000;
+    const particleNum = 4000;
     const maxRange = 1000;
     const minRange = maxRange / 2;
 
@@ -108,18 +87,21 @@ export function Snow() {
 }
 
 const getTexture = () => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const diameter = 64.0;
-    canvas.width = diameter;
-    canvas.height = diameter;
-    const canvasRadius = diameter / 2;
+    // const canvas = document.createElement('canvas');
+    // const ctx = canvas.getContext('2d');
+    // const diameter = 64.0;
+    // canvas.width = diameter;
+    // canvas.height = diameter;
+    // const canvasRadius = diameter / 2;
 
-    // gradation circle for snow
-    drawRadialGradation(ctx, canvasRadius, canvas.width, canvas.height);
+    const texture = new THREE.TextureLoader().load( "/fiocco.png");
 
-    const texture = new THREE.Texture(canvas);
-    texture.type = THREE.FloatType;
+
+    // // gradation circle for snow
+    // drawRadialGradation(ctx, canvasRadius, canvas.width, canvas.height);
+
+    // const texture = new THREE.Texture(canvas);
+    // texture.type = THREE.FloatType;
     texture.needsUpdate = true;
     return texture;
 }
